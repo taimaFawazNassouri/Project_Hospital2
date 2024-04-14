@@ -17,13 +17,13 @@ class DoctorSeeder extends Seeder
     {
         
        Doctor::factory()->count(30)->create();
-       $Appointments =Appointment::all();
+    //    $Appointments =Appointment::all();
 
-       Doctor::all()->each(function($doctor) use ($Appointments)
-       {
-           $doctor->doctorAppointments()->attach
-           ( $Appointments->random(rand(1,7))->pluck('id')->toArray());
-       });
+    //    Doctor::all()->each(function($doctor) use ($Appointments)
+    //    {
+    //        $doctor->doctorAppointments()->attach
+    //        ( $Appointments->random(rand(1,7))->pluck('id')->toArray());
+    //    });
 
     
     // foreach ($doctors as $doctor) {

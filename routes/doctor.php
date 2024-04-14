@@ -31,7 +31,7 @@ Route::group(
 
 
     //################################ dashboard doctor ########################################
-
+ 
     Route::get('/dashboard/doctor', function () {
         return view('Dashboard.doctor.dashboard');
     })->middleware(['auth:doctor'])->name('dashboard.doctor');
@@ -39,14 +39,14 @@ Route::group(
 
     //################################ end dashboard doctor #####################################
     Route::middleware(['auth:doctor'])->group(function () {
-        Livewire::setUpdateRoute(function ($handle) {
-            return Route::post('/livewire/update', $handle);
-        });
+        //#############################  chat route ##########################################
+
         Route::get('list/patients', CreateChat::class)->name('list.patients');
         Route::get('chat/patients', Main::class)->name('chat.patients');
       
        
-    
+        //############################# end chat route ############################################
+
         //############################# completed_invoices route ##########################################
      
         Route::get('completed_invoices', [InvoiceController::class,'completed_invoices'])->name('completed_invoices');
@@ -58,29 +58,19 @@ Route::group(
         Route::resource('Laboratories', LaboratorieController::class);
         Route::get('PatientDetails/{id}', [PatientDetailsController::class,'index'])->name('PatientDetails');
  
-       //#############################  chat route ##########################################
-      
-      
- 
-      //############################# end chat route ############################################
- 
  
          Route::get('/404', function () {
              return view('Dashboard.404');
          })->name('404');
- 
- 
- 
- 
- 
      });
    
  
  //---------------------------------------------------------------------------------------------------------------
- 
- 
-     
+
     require __DIR__ . '/auth.php';
- 
+    Livewire::setUpdateRoute(function ($handle) {
+        return Route::post('/livewire/update', $handle);
+    });
+
  
  });

@@ -41,12 +41,11 @@
 													<label for="exampleFormControlSelect1">{{trans('Dashboard/login_trans.Choose_list')}}</label>
 													<select class="form-control" id="SectionChooser">
 													  <option value="" selected>{{trans('Dashboard/login_trans.Choose_list')}}</option>
-													  <option value="users">{{trans('Dashboard/login_trans.user')}}</option>
 													  <option value="admin">{{trans('Dashboard/login_trans.admin')}}</option>
 													  <option value="doctors">{{trans('Dashboard/login_trans.doctor')}}</option>
 													  <option value="ray_employee">{{trans('login_trans.Ray_employee')}}</option>
 													  <option value="laboratorie_employee">{{trans('Dashboard/login_trans.laboratorie_employee')}}</option>
-													  <option value="patient">{{trans('Dashboard/login_trans.patient')}}</option>
+													  <option value="patient">{{trans('Dashboard/login_trans.user')}}</option>
 
 
 

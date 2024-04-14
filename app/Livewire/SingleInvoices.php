@@ -9,6 +9,7 @@ use App\Models\PatientAccount;
 use App\Models\Service;
 use App\Models\Invoice;
 use App\Models\Notification;
+use App\Models\Appointment;
 use App\Events\CreateInvoice;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -144,6 +145,16 @@ class SingleInvoices extends Component
                     $this->InvoiceSaved =true;
                     $this->show_table =true; 
 
+                    // chek appointment
+                    $patient = Patient::find($this->patient_id);
+                    $appointment_info = Appointment::where('doctor_id', $this->doctor_id)->where('email', $patient->email)->where('type','complete')->first();
+                    if ($appointment_info) {
+                        $appointment = Appointment::find($appointment_info->id);
+                        $appointment->update([
+                            'type' => 'finished'
+                        ]);
+                    }
+
 
                      $notification = new Notification();
                      $notification->user_id = $this->doctor_id;
@@ -245,6 +256,19 @@ class SingleInvoices extends Component
                     $patient_accounts->save();
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
+                    
+                    
+                    // chek appointment
+                    $patient = Patient::find($this->patient_id);
+                    $appointment_info = Appointment::where('doctor_id', $this->doctor_id)->where('email', $patient->email)->where('type','complete')->first();
+                    if ($appointment_info) {
+                        $appointment = Appointment::find($appointment_info->id);
+                        $appointment->update([
+                            'type' => 'finished'
+                        ]);
+                    }
+
+                 
                 }
 
                 DB::commit();

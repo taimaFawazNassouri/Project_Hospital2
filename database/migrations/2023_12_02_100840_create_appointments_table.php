@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
+            $table->foreignId('section_id')->references('id')->on('sections')->onDelete('cascade');
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+            $table->enum('type', ['unComplete', 'complete','finished'])->default('unComplete');
+            $table->dateTime('appointment')->nullable();
+            $table->date('appointment_patient')->nullable();
+            $table->string('notes')->nullable();
             $table->timestamps();
         });
     }

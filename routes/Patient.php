@@ -47,9 +47,7 @@ Route::group(
        //############################# end patients route ######################################
 
       //#############################  chat route ##########################################
-    //   Livewire::setUpdateRoute(function ($handle) {
-    //     return Route::post('/livewire/update', $handle);
-    //   });
+   
       Route::get('list/doctors', CreateChat::class)->name('list.doctors');
       Route::get('chat/doctors', Main::class)->name('chat.doctors');
 
@@ -61,8 +59,7 @@ Route::group(
         Route::get('/404', function () {
             return view('Dashboard.404');
         })->name('404');
-
-
+       
 
 
 
@@ -74,6 +71,10 @@ Route::group(
 
     
     require __DIR__ . '/auth.php';
+    Livewire::setUpdateRoute(function ($handle) {
+        return Route::post('/livewire/update', $handle); });
+
+
 
 
 });

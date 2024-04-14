@@ -14,8 +14,10 @@ use App\Http\Controllers\Dashboard\LaboratorieEmployeeController;
 use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\DoctorLoginController;
 use App\Http\Controllers\Dashboard\SingleServiceController;
+use App\Http\Controllers\Dashboard\Appointments\AppointmentController;
 use App\Events\MyEvent;
 use App\Livewire\Counter;
+
 
 
 
@@ -134,7 +136,15 @@ use Illuminate\Support\Facades\Route;
 
           //############################# end LaboratorieEmployee route ######################################
         
-       
+         //############################# start Appointments route ######################################
+         Route::get('/List_Appointments', [AppointmentController::class ,'unCompletedAppointment'])->name('list_appointments');
+         Route::get('/List_Completed_Appointments', [AppointmentController::class ,'CompletedAppointment'])->name('list_completed_appointments');
+         Route::get('/List_Finished_Appointments', [AppointmentController::class ,'finishedAppointment'])->name('list_finished_appointments');
+         Route::put('Appointment/approval/{id}',[AppointmentController::class ,'approvalAppointment'])->name('appointments.approval');
+         Route::delete('Appointment/delete/{id}',[AppointmentController::class ,'destroy'])->name('appointments.destroy');
+
+         //############################# end Appointments route ######################################
+        
     
         
     });
